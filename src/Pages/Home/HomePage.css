@@ -15,6 +15,4 @@
     padding: 20px; /* Padding inside the box */
     box-sizing: border-box; /* Ensures padding doesn't add to the overall size */
 }
-.Nav .Home{ /*Makes home underlined when on home page */
-    text-decoration: underline;
-}
+

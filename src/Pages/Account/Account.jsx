@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Nav from '../../Components/Navigation/Nav';
 const Account = () => {
   return (
-    <div>Account</div>
+    <div>
+        <Nav></Nav>
+    </div>
   )
 }
 

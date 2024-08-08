@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Nav from '../../Components/Navigation/Nav';
+import './Sets.css';
 const Sets = () => {
   return (
-    <div>Sets</div>
+    <div>
+      <Nav> </Nav>
+    </div>
   )
 }
 

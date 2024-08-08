@@ -1,14 +1,6 @@
-.wrapper-nav Title{
-    text-decoration: dashed;
-    color: #fff;
-    padding: 0 40px;
-    text-align: right;
-}
 .wrapper-nav Title a{
-    text-decoration: dashed;
     color: #fff;
-    padding: 0 40px;
-    text-align: right;
+    text-decoration: none;
 }
 .wrapper-nav Nav{
     display: flex;
@@ -29,6 +21,7 @@
     display: flex;
     justify-content: flex-end; /* Evenly space out the links */
     width: 100%;
+    text-decoration: none;
 }
 .Nav a{
     text-decoration: dashed;
@@ -37,5 +30,9 @@
     text-align: right;
 }
 .wrapper-nav Nav a:hover{
+    text-decoration: underline;
+}
+
+.Nav .active-link{
     text-decoration: underline;
 }

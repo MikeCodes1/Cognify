@@ -1,16 +1,36 @@
 import React from 'react'
-import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
+import { BrowserRouter,Routes,Route, Link, NavLink } from 'react-router-dom';
 import './Nav.css';
 const Nav = () => {
   return (
     
     <div className='wrapper-nav'>
-        <Link to = "/HomePage" className="Title">Cognify </Link>
+        <NavLink to = "/HomePage" className="Title">Cognify </NavLink>
         <nav className='Nav'>
-            <Link to ="/HomePage" className="Home">Home </Link>
-            <Link to ="/Sets">Sets </Link>
-            <Link to ="/Explore">Explore </Link>
-            <Link to ="/Account">Account </Link>
+        <NavLink 
+                to="/HomePage" 
+                className={({ isActive }) => isActive ? "Home active-link" : "Home"}
+            >
+                Home
+            </NavLink>
+            <NavLink 
+                to="/Sets" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+            >
+                Sets
+            </NavLink>
+            <NavLink 
+                to="/Explore" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+            >
+                Explore
+            </NavLink>
+            <NavLink 
+                to="/Account" 
+                className={({ isActive }) => isActive ? "active-link" : ""}
+            >
+                Account
+            </NavLink>
         </nav>
     </div>
   )
