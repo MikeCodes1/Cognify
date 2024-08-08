@@ -1,6 +1,8 @@
+import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
 import React from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
+
 
 const LoginForm = () => {
     return(
@@ -21,10 +23,10 @@ const LoginForm = () => {
                     <a href='#'>Forgot password?</a>
                 </div>
 
-                <button type="submit">Login</button>
+                <Link to = "/RegisterForm"><button type="submit">Login</button></Link>
 
                 <div className="register-link">
-                    <p>Don't have an account? <a href="#">Register</a></p>
+                    <p>Don't have an account? <Link to ="/RegisterForm"> Register</Link></p>
                 </div>
             </form>
         </div>
