@@ -1,0 +1,41 @@
+.wrapper-nav Title{
+    text-decoration: dashed;
+    color: #fff;
+    padding: 0 40px;
+    text-align: right;
+}
+.wrapper-nav Title a{
+    text-decoration: dashed;
+    color: #fff;
+    padding: 0 40px;
+    text-align: right;
+}
+.wrapper-nav Nav{
+    display: flex;
+    
+    width: calc(100vw -30px);
+    margin: auto;
+    background: rgb(65, 38, 65);
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Gives transparent box look */
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-radius: 20px; /* Gives rounded edges */
+    padding: 20px; /* Padding inside the box */
+    box-sizing: border-box; /* Ensures padding doesn't add to the overall size */
+    font-size: 30px;
+}
+.Nav {
+    display: flex;
+    justify-content: flex-end; /* Evenly space out the links */
+    width: 100%;
+}
+.Nav a{
+    text-decoration: dashed;
+    color: #fff;
+    padding: 0 40px;
+    text-align: right;
+}
+.wrapper-nav Nav a:hover{
+    text-decoration: underline;
+}

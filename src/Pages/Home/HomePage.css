@@ -1,0 +1,20 @@
+.wrapper-pages {
+    position: fixed; /* Keeps the element fixed relative to the viewport */
+    top: 10px; /* Adds a 10px gap at the top */
+    left: 10px; /* Adds a 10px gap on the left side */
+    right: 10px; /* Adds a 10px gap on the right side */
+    bottom: 0px; /* Ensures the bottom edge touches the bottom of the viewport */
+    width: calc(100vw - 20px); /* Full width minus the left and right gaps */
+    height: calc(100vh); /* Full height minus the top and bottom gaps */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Gives transparent box look */
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-radius: 20px; /* Gives rounded edges */
+    padding: 20px; /* Padding inside the box */
+    box-sizing: border-box; /* Ensures padding doesn't add to the overall size */
+}
+.Nav .Home{ /*Makes home underlined when on home page */
+    text-decoration: underline;
+}
