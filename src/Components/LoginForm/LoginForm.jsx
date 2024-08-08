@@ -23,7 +23,7 @@ const LoginForm = () => {
                     <a href='#'>Forgot password?</a>
                 </div>
 
-                <Link to = "/RegisterForm"><button type="submit">Login</button></Link>
+                <Link to = "/HomePage"><button type="submit">Login</button></Link>
 
                 <div className="register-link">
                     <p>Don't have an account? <Link to ="/RegisterForm"> Register</Link></p>

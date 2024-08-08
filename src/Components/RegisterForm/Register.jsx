@@ -30,10 +30,11 @@ const Register = () => {
         </div>
         <div className="remember-forgot">
           <label><input type="checkbox" />Remember me</label>
-          <p>Have an accoount? <Link to = "/LoginForm">Login</Link></p>
         </div>
-
-        <button type="submit">Register</button>
+        <div className="register-link">
+          <p>Have an account? <Link to = "/LoginForm"> Login</Link></p>
+        </div>
+        <Link to = "/LoginForm"> <button type="submit">Register</button></Link>
       </form>
     </div>
     
