@@ -5,6 +5,7 @@ const Sets = () => {
   return (
     <div className='wrapper-pages'>
       <Nav></Nav>
+      <div className='Sets'></div>
     </div>
   )
 }
