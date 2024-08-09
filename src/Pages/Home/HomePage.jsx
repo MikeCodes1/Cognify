@@ -1,5 +1,5 @@
 import React from 'react'
-import './HomePage.css';
+import '../Pages.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Nav from '../../Components/Navigation/Nav';
 const HomePage = () => {

@@ -1,6 +1,21 @@
-.wrapper-nav Title a{
+.wrapper-title .Title{
     color: #fff;
     text-decoration: none;
+}
+.wrapper-title{
+    
+    display: flex;
+    width: 159px;
+    
+    background: rgb(50, 31, 116);
+    border: 2px solid rgba(116, 44, 44, 0.2); 
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-radius: 20px; /* Gives rounded edges */
+    padding: 20px; /* Padding inside the box */
+    box-sizing: border-box; /* Ensures padding doesn't add to the overall size */
+    font-size: 30px;
 }
 .wrapper-nav Nav{
     display: flex;
@@ -8,7 +23,7 @@
     width: calc(100vw -30px);
     margin: auto;
     background: rgb(65, 38, 65);
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Gives transparent box look */
+    border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(30px);
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
     color: #fff;

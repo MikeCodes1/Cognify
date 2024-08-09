@@ -5,8 +5,12 @@ const Nav = () => {
   return (
     
     <div className='wrapper-nav'>
-        <NavLink to = "/HomePage" className="Title">Cognify </NavLink>
+        <div className="wrapper-title">
+            <NavLink to = "/HomePage" className="Title">Cognify </NavLink>
+        </div>
+        
         <nav className='Nav'>
+            
         <NavLink 
                 to="/HomePage" 
                 className={({ isActive }) => isActive ? "Home active-link" : "Home"}

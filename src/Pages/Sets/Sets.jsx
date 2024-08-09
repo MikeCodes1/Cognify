@@ -1,10 +1,10 @@
 import React from 'react'
 import Nav from '../../Components/Navigation/Nav';
-import './Sets.css';
+import '../Pages.css';
 const Sets = () => {
   return (
-    <div>
-      <Nav> </Nav>
+    <div className='wrapper-pages'>
+      <Nav></Nav>
     </div>
   )
 }
