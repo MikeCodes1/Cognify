@@ -5,9 +5,11 @@ import Home from './Pages/Home/HomePage';
 import Sets from './Pages/Sets/Sets';
 import Explore from './Pages/Explore/Explore';
 import Account from './Pages/Account/Account';
+
 function App() {
   return (
-    <div>
+    <div className="App">
+      
       <BrowserRouter>
         <Routes>
           <Route index element={<LoginForm />} />

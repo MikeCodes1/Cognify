@@ -2,14 +2,18 @@ import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
 import React from 'react';
 import './LoginForm.css';
 import { FaUser, FaLock } from "react-icons/fa";
-import { auth, googleProvider } from '../../config/firebase'
+import { auth, googleProvider, db } from '../../config/firebase'
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth' 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* **CHANGE USERNAME TO EMAIL** */
 const LoginForm = () => {
+    
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    
 
     const signIn = async () =>{
         try {
@@ -56,11 +60,12 @@ const LoginForm = () => {
 
                 <Link to = "/HomePage"><button type="submit" onClick={signIn}>Login</button></Link>
                 <Link to = "/HomePage"><button type="submit" onClick={signInWithGoogle}> Sign In with Google</button> </Link>
-                <button onClick={logout}> Logout </button>
+                
                 <div className="register-link">
                     <p>Don't have an account? <Link to ="/RegisterForm"> Register</Link></p>
                 </div>
             </form>
+            <button onClick={logout}> Logout </button>
         </div>
     );
 };
