@@ -25,7 +25,7 @@ const Nav = () => {
             >
                 Sets
             </NavLink>
-            <NavLink 
+            <NavLink
                 to="/Explore" 
                 className={({ isActive }) => isActive ? "active-link" : ""}
             >

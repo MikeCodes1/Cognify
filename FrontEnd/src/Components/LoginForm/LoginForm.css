@@ -13,6 +13,7 @@
     font-size: 36px;
     text-align: center;
 }
+
 .wrapper .input-box{
     position: relative;
     width: 100%;
@@ -55,13 +56,16 @@
     accent-color: #fff;
     margin-right: 4px;
 }
+
 .remember-forgot a{ /* makes forgot password white and not a hyperlink anymore */
     color: #fff;
     text-decoration: none;
 }
+
 .remember-forgot a:hover{ /* makes the forgot password underlined when hovered mouse over */
     text-decoration: underline;
 }
+
 .wrapper button{ /* makes button big asf ,round, bigger font, and cursor become a pointer*/
     width: 100%;
     height: 45px;
@@ -75,16 +79,20 @@
     color: #333;
     font-weight: 700;
 }
+
 .wrapper .register-link {
     font-size: 14.5px;
     text-align: center;
     margin: 20px 0 15px ;
 }
+
 .register-link p a { /* what does p a mean?? */
     color: #fff;
     text-decoration: none;
     font-weight: 600;
 }
+
 .register-link p a:hover{
     text-decoration: underline;
 }
+

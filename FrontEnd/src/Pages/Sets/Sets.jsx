@@ -68,7 +68,7 @@ const Sets = () => {
 
         <input placeholder="Term" onChange={(e) => setNewTerm(e.target.value)}/>
         <input placeholder="Definition" onChange={(e) => setNewDefinition(e.target.value)}/>
-        <button onClick={onSumbitFlashCard}> Sumbit Flash Card</button>
+        <button onClick={onSumbitFlashCard}> Submit Flash Card</button>
 
       </div>
       <div className='Sets'>

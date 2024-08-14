@@ -12,7 +12,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('./Components/Assets/background\ \(1\).jpg') no-repeat;
+  /* background: url('./Components/Assets/background\ \(1\).jpg') repeat; */
+  background-color: rgb(28 28 34);
   background-size: cover;
   background-position: center;
 }
