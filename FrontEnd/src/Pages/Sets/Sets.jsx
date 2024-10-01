@@ -1,95 +1,105 @@
-import {React, useEffect, useState} from 'react'
+import {React, useEffect, useState} from 'react';
 import Nav from '../../Components/Navigation/Nav';
 import '../Pages.css';
-import {db, auth} from '../../config/firebase'
-import {getDocs, collection, addDoc, deleteDoc, doc, updateDoc} from 'firebase/firestore'
+import {db, auth} from '../../config/firebase';
+import {getDocs, collection, addDoc, deleteDoc, doc, updateDoc} from 'firebase/firestore';
 
 const Sets = () => {
+  const [sets, setSets] = useState([]);
+  const [newSetName, setNewSetName] = useState("");
+  const [newTerm, setNewTerm] = useState("");
+  const [newDefinition, setNewDefinition] = useState("");
+  const [flashcards, setFlashcards] = useState([]);
 
-  //FIXME **CHECK DATABASE AND POSSIBLY CHANGE ALL OF THESE TO THE DB FOR SETS WITH MAPS **
-  //FIXME ** UPDATE DEF WILL CHANGE A DIFFERENT FLASHCARDS IF YOU CLICK THE OTHER FLASHCARDS CAN CHANGE BY MAKING OWN STATE FOR EACH FLASHCARD I THINK WATCH THE OG VIDEO https://www.youtube.com/watch?v=2hR-uWjBAgw&t=2170s **
-  const [Set, setSet] = useState([]);
+  const setsCollectionRef = collection(db, "Sets");
 
-  const setCollectionRef = collection(db, "Set");
-  //UPDATE definition state
-  const[updateDef, setUpdatedDef] = useState("");
-
-
-  const getSet = async() => {
-    //READ THE DATA
-    //SET THE MOVIE LIST
+  // Fetch Sets
+  const getSets = async() => {
     try{
-      const data = await getDocs(setCollectionRef);
-      const filteredData = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-      setSet(filteredData);
+      const data = await getDocs(setsCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(), 
+        id: doc.id, 
+        Flashcards: doc.data().Flashcards || []  // Ensure Flashcards is an array
+      }));
+      setSets(filteredData);
     } catch(err){
       console.error(err);
     }
-    
-};
+  };
 
   useEffect(() => {
-    getSet();
-}, []);
+    getSets();
+  }, []);
 
-  //New Sets
-  const [newTerm, setNewTerm] = useState("");
-  const [newDefintion, setNewDefinition] = useState("");
+  // Add Flashcard to current list (before submitting the entire set)
+  const addFlashcardToList = () => {
+    setFlashcards([...flashcards, { Term: newTerm, Definition: newDefinition, Correct: 0, Incorrect: 0 }]);
+    setNewTerm("");
+    setNewDefinition("");
+  };
 
-  const onSumbitFlashCard = async () => {
+  // Submit New Set with all Flashcards
+  const onSubmitSet = async () => {
     try{
-      await addDoc(setCollectionRef, {Term: newTerm, Definition: newDefintion, AnsweredCorrect: 0, AnsweredIncorrect: 0, userId: auth?.currentUser?.uid});
-      
-      getSet();
-    }catch(err){
+      await addDoc(setsCollectionRef, { SetName: newSetName, userId: auth?.currentUser?.uid, Flashcards: flashcards });
+      setFlashcards([]);
+      setNewSetName("");
+      getSets();
+    } catch(err){
       console.error(err);
     }
-  }
-  //DELETE FLASHCARD
-
-  const deleteFlashCard = async (id) => {
-    const FlashCard = doc(db, "Set", id ); //** NAME OF COLLECTION IS "Set" change later to change what database */
-    await deleteDoc(FlashCard);
-    getSet();
   };
 
-
-  //UPDATE FLASHCARD
-  const updateFlashCard = async (id) => {
-    const FlashCard = doc(db, "Set", id ); //** NAME OF COLLECTION IS "Set" change later to change what database */
-    await updateDoc(FlashCard, {Definition: updateDef});
-    getSet();
+  // Delete Entire Set
+  const deleteSet = async (id) => {
+    const setDoc = doc(db, "Sets", id);
+    await deleteDoc(setDoc);
+    getSets();
   };
+
+  // Update Flashcard in a Set
+  const updateFlashcard = async (setId, flashcardIndex, newDefinition) => {
+    const setDoc = doc(db, "Sets", setId);
+    const selectedSet = sets.find((set) => set.id === setId);
+    if (selectedSet) {
+      selectedSet.Flashcards[flashcardIndex].Definition = newDefinition;
+      await updateDoc(setDoc, { Flashcards: selectedSet.Flashcards });
+      getSets();
+    }
+  };
+
   return (
-
     <div className='wrapper-pages'>
       <Nav></Nav>
       <div className="CreateSets">
-
-        <input placeholder="Term" onChange={(e) => setNewTerm(e.target.value)}/>
-        <input placeholder="Definition" onChange={(e) => setNewDefinition(e.target.value)}/>
-        <button onClick={onSumbitFlashCard}> Submit Flash Card</button>
-
+        <input placeholder="Set Name" value={newSetName} onChange={(e) => setNewSetName(e.target.value)} />
+        <input placeholder="Term" value={newTerm} onChange={(e) => setNewTerm(e.target.value)} />
+        <input placeholder="Definition" value={newDefinition} onChange={(e) => setNewDefinition(e.target.value)} />
+        <button onClick={addFlashcardToList}>Add Flashcard</button>
+        <button onClick={onSubmitSet}>Submit Set</button>
       </div>
+
       <div className='Sets'>
-        {Set.map((Set) =>(
-          <div>
-            <p> Term: {Set.Term} </p>
-            <p> Definition: {Set.Definition} </p>
-            <p> Correct: {Set.AnsweredCorrect} </p>
-            <p> Incorrect: {Set.AnsweredIncorrect}</p>
-
-            <p><button onClick={() => deleteFlashCard(Set.id)}> Delete FlashCard </button></p>
-
-            <input placeholder="New Definition..." onChange={(e) => setUpdatedDef(e.target.value)}/>
-            <button onClick={() => updateFlashCard(Set.id)}> Update Definition</button>
-            </div>
+        {sets.map((set) => (
+          <div key={set.id}>
+            <h3>{set.SetName}</h3>
+            {set.Flashcards && set.Flashcards.map((flashcard, index) => (
+              <div key={index}>
+                <p>Term: {flashcard.Term}</p>
+                <p>Definition: {flashcard.Definition}</p>
+                <p>Correct: {flashcard.Correct}</p>
+                <p>Incorrect: {flashcard.Incorrect}</p>
+                <input placeholder="New Definition..." onChange={(e) => setNewDefinition(e.target.value)} />
+                <button onClick={() => updateFlashcard(set.id, index, newDefinition)}>Update Definition</button>
+              </div>
+            ))}
+            <button onClick={() => deleteSet(set.id)}>Delete Set</button>
+          </div>
         ))}
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Sets
+export default Sets;

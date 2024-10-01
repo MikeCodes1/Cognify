@@ -3,13 +3,13 @@ import {getAuth, GoogleAuthProvider} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore'
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: "AIzaSyAXRLRgR8FUDcktaLYHsgg5OrvVtzTUhq8",
-  authDomain: "cognify-c0678.firebaseapp.com",
-  projectId: "cognify-c0678",
-  storageBucket: "cognify-c0678.appspot.com",
-  messagingSenderId: "80340697226",
-  appId: "1:80340697226:web:eee7656148c8431ea8ad73",
-  measurementId: "G-S6RGLDZNP8"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

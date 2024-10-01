@@ -66,15 +66,18 @@ const LoginForm = () => {
                     <label><input type="checkbox" />Remember me</label>
                     <a href='#'>Forgot password?</a>
                 </div>
+                <div className='Login'>
+                    <button type="submit" onClick={signIn}>Login</button>
+                </div>
 
-                <button type="submit" onClick={signIn}>Login</button>
-                <button type="submit" onClick={signInWithGoogle}> Sign In with Google</button>
+                <div className='google_signin'>
+                    <button type="submit" onClick={signInWithGoogle}> Sign In with Google</button>
+                </div>
                 
                 <div className="register-link">
                     <p>Don't have an account? <Link to ="/RegisterForm"> Register</Link></p>
                 </div>
             </form>
-            <button onClick={logout}> Logout </button>
         </div>
     );
 };
